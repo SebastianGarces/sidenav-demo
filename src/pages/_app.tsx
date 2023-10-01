@@ -1,3 +1,4 @@
+import { NavigationProvider } from "@/contexts/nav";
 import "@/styles/globals.css";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
@@ -14,5 +15,9 @@ type AppPropsWithLayout = AppProps & {
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <NavigationProvider>
+      {getLayout(<Component {...pageProps} />)}
+    </NavigationProvider>
+  );
 }

@@ -1,52 +1,32 @@
-import Link from "next/link";
+import { useNavigationContext } from "@/contexts/nav";
+import { ChartIcon } from "@/icons/ChartIcon";
+import { DashboardIcon } from "@/icons/DashboardIcon";
+import { NavLink } from "./NavLink";
+import { SideNavExpander } from "./SideNavExpander";
 
 export function SideNav() {
+  const { isNavCollapsed, setIsNavCollapsed } = useNavigationContext();
+
   return (
-    <aside className="overflow-hidden border-r border-slate-500">
-      <Link href="/" className="flex gap-2 p-2">
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-layout-dashboard inline"
-          >
-            <rect width="7" height="9" x="3" y="3" rx="1" />
-            <rect width="7" height="5" x="14" y="3" rx="1" />
-            <rect width="7" height="9" x="14" y="12" rx="1" />
-            <rect width="7" height="5" x="3" y="16" rx="1" />
-          </svg>
+    <aside
+      className={`h-full z-10 bg-white overflow-hidden border-r border-gray-400 hover:w-[216px] transition-[width] duration-150 shadow-[2px_0_2px_0_rgba(0,0,0,0.05)] ${
+        isNavCollapsed ? "fixed w-[56px]" : "w-[216px]"
+      }`}
+    >
+      {isNavCollapsed ? (
+        <div className="bg-slate-800 text-slate-100 h-14 w-full text-center flex justify-start items-center p-4">
+          SE
         </div>
-        Home
-      </Link>
-      <Link href="/about" className="flex gap-2 p-2">
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-kanban-square inline"
-          >
-            <rect width="18" height="18" x="3" y="3" rx="2" />
-            <path d="M8 7v7" />
-            <path d="M12 7v4" />
-            <path d="M16 7v9" />
-          </svg>
+      ) : (
+        <div className="bg-slate-800 text-slate-100 h-14 text-center flex justify-start items-center p-4">
+          SOLDIER ENGAGEMENT
         </div>
-        About
-      </Link>
+      )}
+      <SideNavExpander />
+      <nav className="flex flex-col gap-2 px-2">
+        <NavLink href="/" content="Home" icon={DashboardIcon} />
+        <NavLink href="/about" content="About" icon={ChartIcon} />
+      </nav>
     </aside>
   );
 }
