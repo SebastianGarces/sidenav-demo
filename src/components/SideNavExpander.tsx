@@ -1,9 +1,13 @@
+import { addGridArea } from "@/add-grid-area";
 import { useNavigationContext } from "@/contexts/nav";
 
 export function SideNavExpander() {
   const { isNavCollapsed, setIsNavCollapsed } = useNavigationContext();
   return (
-    <div className="h-14 text-center flex justify-start items-center p-2">
+    <div
+      className="grid-area h-14 text-center flex justify-start items-center p-2"
+      style={addGridArea("expander")}
+    >
       <div
         className="hover:bg-slate-200 rounded-[4px] transition-[background] duration-150 cursor-pointer p-2 text-slate-700"
         onClick={() => {

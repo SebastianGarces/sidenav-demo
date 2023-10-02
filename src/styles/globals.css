@@ -17,6 +17,7 @@
 }
 
 body {
+  --grid-area-name: body;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,4 +25,16 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.side-nav-areas {
+  grid-template-areas:
+    "logo"
+    "expander"
+    "nav"
+    "logout";
+}
+
+.grid-area {
+  grid-area: var(--grid-area-name);
 }
